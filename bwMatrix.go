@@ -33,11 +33,11 @@ func (me *BWMatrix) Clear() {
 // DrawPixel turns a pixel at the provided coordinate on
 func (me *BWMatrix) DrawPixel(x, y int) {
 
-	index := y*MatrixWidth + x
-
-	if index >= MatrixHeight*MatrixWidth || index < 0 {
+	if x < 0 || x >= MatrixWidth || y < 0 || y >= MatrixHeight {
 		return
 	}
+
+	index := y*MatrixWidth + x
 
 	me.drawBuffer[index/8] |= (1 << (index % 8))
 }
