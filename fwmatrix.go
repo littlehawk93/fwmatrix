@@ -11,13 +11,16 @@ const (
 // Returns any errors encountered during serial writing
 func ShowPattern(p *serial.Port, pat Pattern, per uint8) error {
 
-	buf := make([]uint8, 1)
+	buf := []uint8{uint8(pat)}
 
 	if pat == PatPercentage {
-		buf[0] = per
-	} else {
-		buf = nil
+
+		if per > 100 {
+			per = 100
+		}
+		buf = append(buf, per)
 	}
+
 	return WriteCommand(p, CmdPattern, buf)
 }
 
