@@ -43,10 +43,10 @@ func (me *BWMatrix) DrawPixel(x, y int) {
 }
 
 // DrawLine draws a line from a point to another
-func (me *BWMatrix) DrawLine(x1, y1, x2, y2 int) {
+func (me *BWMatrix) DrawLine(x0, y0, x1, y1 int) {
 
-	dx := x2 - x1
-	dy := y2 - y1
+	dx := x1 - x0
+	dy := y1 - y0
 
 	mx := dx
 
@@ -69,13 +69,29 @@ func (me *BWMatrix) DrawLine(x1, y1, x2, y2 int) {
 	xi := float64(dx) / float64(steps)
 	yi := float64(dy) / float64(steps)
 
-	x := float64(x1)
-	y := float64(y1)
+	x := float64(x0)
+	y := float64(y0)
 
 	for i := 0; i <= steps; i++ {
 		me.DrawPixel(int(math.Round(x)), int(math.Round(y)))
 		x += xi
 		y += yi
+	}
+}
+
+// DrawRect draws an empty rectangle with opposite corners at x0,y0 and x1,y1
+func (me *BWMatrix) DrawRect(x0, y0, x1, y1 int) {
+
+	me.DrawLine(x0, y0, x1, y0)
+	me.DrawLine(x0, y0, x0, y1)
+	me.DrawLine(x1, y0, x1, y1)
+	me.DrawLine(x0, y1, x1, y1)
+}
+
+// DrawFillRect draws a filled rectangle with opposite corners at x0,y0 and x1,y1
+func (me *BWMatrix) DrawFillRect(x0, y0, x1, y1 int) {
+	for x := x0; x <= x1; x++ {
+		me.DrawLine(x, y0, x, y1)
 	}
 }
 
