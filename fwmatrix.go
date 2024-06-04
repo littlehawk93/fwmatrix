@@ -7,7 +7,7 @@ const (
 	magicByteL uint8 = 0xAC
 
 	// MatrixWidth the width (in pixels) of the LED Matrix module
-	MatrixWidth int = 8
+	MatrixWidth int = 9
 
 	// MatrixHeight the height (in pixels) of the LED Matrix module
 	MatrixHeight int = 34
