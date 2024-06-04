@@ -5,6 +5,12 @@ import "github.com/tarm/serial"
 const (
 	magicByteH uint8 = 0x32
 	magicByteL uint8 = 0xAC
+
+	// MatrixWidth the width (in pixels) of the LED Matrix module
+	MatrixWidth int = 8
+
+	// MatrixHeight the height (in pixels) of the LED Matrix module
+	MatrixHeight int = 34
 )
 
 // ShowPattern displays a pre-programmed pattern on a LED matrix module via the provided serial port.
@@ -42,9 +48,14 @@ func WriteCommand(p *serial.Port, c Command, params []byte) error {
 	return nil
 }
 
-// SetBrightness sets the global brightness for all pixels on the LED Matrix module
+// SetBrightness sets the global brightness for all pixels on the LED Matrix module.
+// Brightness values range from 0 - 100. Values over 100 will be clamped to 100.
 // Returns any errors encountered during serial communications
 func SetBrightness(p *serial.Port, brightness uint8) error {
+
+	if brightness > 100 {
+		brightness = 100
+	}
 
 	return WriteCommand(p, CmdSleep, []byte{brightness})
 }
