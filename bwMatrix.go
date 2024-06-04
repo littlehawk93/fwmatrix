@@ -39,7 +39,7 @@ func (me *BWMatrix) DrawPixel(x, y int) {
 		return
 	}
 
-	me.drawBuffer[index/8] |= 1 << (index % 8)
+	me.drawBuffer[index/8] |= (1 << (index % 8))
 }
 
 // DrawLine draws a line from a point to another
