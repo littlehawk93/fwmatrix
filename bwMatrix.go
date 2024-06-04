@@ -45,8 +45,8 @@ func (me *BWMatrix) DrawPixel(x, y int) {
 // DrawLine draws a line from a point to another
 func (me *BWMatrix) DrawLine(x1, y1, x2, y2 int) {
 
-	dx := x1 - x2
-	dy := y1 - y2
+	dx := x2 - x1
+	dy := y2 - y1
 
 	mx := dx
 
