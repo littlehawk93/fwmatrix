@@ -37,6 +37,7 @@ func StartAnimation(render RenderFrameFunc, m MatrixRenderer, frameTime int64) e
 		currTime := time.Now().UnixMilli()
 		frameDiff := lastFrame - currTime
 		lastFrame = currTime
+		m.Clear()
 		if err := render(m, frameDiff); err != nil {
 			if !errors.Is(err, ErrorStopAnimation) {
 				return err
