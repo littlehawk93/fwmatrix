@@ -40,7 +40,7 @@ func DrawLine(r MatrixRenderer, x0, y0, x1, y1 int) {
 }
 
 // DrawRect draws an empty rectangle with the provided matrix with opposite corners at x0,y0 and x1,y1
-func (me *BWMatrix) DrawRect(r MatrixRenderer, x0, y0, x1, y1 int) {
+func DrawRect(r MatrixRenderer, x0, y0, x1, y1 int) {
 
 	DrawLine(r, x0, y0, x1, y0)
 	DrawLine(r, x0, y0, x0, y1)
@@ -49,7 +49,7 @@ func (me *BWMatrix) DrawRect(r MatrixRenderer, x0, y0, x1, y1 int) {
 }
 
 // DrawFillRect draws a filled rectangle with the provided matrix with opposite corners at x0,y0 and x1,y1
-func (me *BWMatrix) DrawFillRect(r MatrixRenderer, x0, y0, x1, y1 int) {
+func DrawFillRect(r MatrixRenderer, x0, y0, x1, y1 int) {
 
 	dx := x1 - x0
 	dy := y1 - y0
