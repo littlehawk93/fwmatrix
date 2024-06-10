@@ -20,6 +20,7 @@ const (
 var ErrorStopAnimation error = errors.New("fwmatrix - stop animation")
 
 // RenderFrameFunc function for rendering a single frame of an animation.
+// Delta is the time (in milliseconds) since the last frame render call was made
 // Should return any errors encountered during rendering.
 // Do not call r.Flush() inside the this function.
 // Return ErrorStopAnimation to halt animation without throwing an error

@@ -4,6 +4,10 @@ import (
 	"github.com/tarm/serial"
 )
 
+const (
+	gsMatrixBufferSize int = MatrixHeight * MatrixWidth
+)
+
 // GSMatrix a tool for drawing basic 8bit greyscale pixel data on a LED Matrix module
 type GSMatrix struct {
 	port       *serial.Port
@@ -64,4 +68,22 @@ func (me *GSMatrix) getColumnCommand(col int) []uint8 {
 	buf := []uint8{uint8(col)}
 
 	return append(buf, me.drawBuffer[col*MatrixHeight:(col+1)*MatrixHeight]...)
+}
+
+// NewGS opens a serial port with the provided name and baud rate and initializes a new GSMatrix with it.
+// Returns any errors that occurred when opening the serial port
+func NewGS(names string, baud int) (*GSMatrix, error) {
+
+	p, err := serial.OpenPort(&serial.Config{Name: names, Baud: baud})
+
+	if err != nil {
+		return nil, err
+	}
+	return &GSMatrix{port: p, drawBuffer: make([]uint8, gsMatrixBufferSize)}, nil
+}
+
+// NewGSWithPort create and initialize a new GSMatrix using the provided serial port
+func NewGSWithPort(port *serial.Port) *GSMatrix {
+
+	return &GSMatrix{port: port, drawBuffer: make([]uint8, gsMatrixBufferSize)}
 }
