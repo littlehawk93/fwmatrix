@@ -165,8 +165,6 @@ scale := 0.4
 boxSpeedX := rng.Float64() * scale / float64(fwmatrix.FrameTime30FPS)
 boxSpeedY := rng.Float64() * scale / float64(fwmatrix.FrameTime30FPS) * float64(fwmatrix.MatrixHeight) / float64(fwmatrix.MatrixWidth)
 
-mat.SetBrightness(25)
-
 bounces := 0
 
 err = fwmatrix.StartAnimation(func(m fwmatrix.MatrixRenderer, delta int64) error {
