@@ -49,7 +49,7 @@ func WriteCommand(p *serial.Port, c Command, params []byte) error {
 }
 
 // SetBrightness sets the global brightness for all pixels on the LED Matrix module.
-// Brightness values range from 0 - 100. Values over 100 will be clamped to 100.
+// Brightness values range from 0 - 255.
 // Returns any errors encountered during serial communications
 func SetBrightness(p *serial.Port, brightness uint8) error {
 
