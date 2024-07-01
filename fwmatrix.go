@@ -53,11 +53,7 @@ func WriteCommand(p *serial.Port, c Command, params []byte) error {
 // Returns any errors encountered during serial communications
 func SetBrightness(p *serial.Port, brightness uint8) error {
 
-	if brightness > 100 {
-		brightness = 100
-	}
-
-	return WriteCommand(p, CmdSleep, []byte{brightness})
+	return WriteCommand(p, CmdBrightness, []byte{brightness})
 }
 
 // Panic cause a FW panic.
